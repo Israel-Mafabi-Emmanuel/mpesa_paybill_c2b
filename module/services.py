@@ -21,12 +21,17 @@ def url(environment: int = 0, request: int = 0) -> str:
     """
         A function for selecting the required url
         based on environment selection.
-        type:
+
+        request type:
         0 -> request development
         1 -> request live
 
+        environment type:
         0 -> local environment - development environment
         1 -> live/deployment
+
+        :returns
+        -> returns a string -> concerning the url (environment based...)
     """
     development_generate_url = os.getenv("DEVELOPMENT_GENERATE_URL")
     live_generate_url = os.getenv("LIVE_GENERATE_URL")
@@ -48,7 +53,8 @@ def generate_access_token():
     """
         A function for generating the access token
         for authentication over APIs
-    Returns:
+
+        :returns
         -> No return values...
     """
     try:
@@ -75,14 +81,16 @@ def generate_access_token():
 
 def encode_password(shortcode: str, passkey: str, timestamp: str) -> str:
     """
-    A function for creating the password...
-    Encodes the password using the provided shortcode, passkey and timestamp.
-    Args:
+        A function for creating the password...
+        Encodes the password using the provided shortcode, passkey and timestamp.
+
+        :argument
         shortcode: refers to the business short code.
         passkey: mpesa passkey from - daraja api.
         timestamp: time value...
-    Returns:
-         The encoded password string
+
+        :returns
+        returns a string -> The encoded password string
     """
     password_string: str = shortcode + passkey + timestamp
     encoded_string: bytes = base64.b64encode(password_string.encode())
@@ -92,16 +100,17 @@ def encode_password(shortcode: str, passkey: str, timestamp: str) -> str:
 def initiate_mpesa_stk_push(phone_number: str, amount: int, callback_url: str, account_reference: str,
                             transaction_description: str):
     """
-    A function that initiates an MPESA STK Push request.
-    Args:
+        A function that initiates an MPESA STK Push request.
+
+        :arg
         phone_number: The customer's phone number (e.g., "2547XXXXXXXX").
         amount: The amount to be paid.
         callback_url: The URL on your server that MPESA will call back to with the payment status.
-        account_reference:  Your unique reference for the transaction (e.g., ticket ID).
+        account_reference:  Your unique reference for the transaction
         transaction_description: A description of the transaction.
 
-    Returns:
-        A tuple: (success, message, checkout_request_id)
+        :returns
+        returns a tuple: (success, message, checkout_request_id)
         success: True if the STK push was initiated successfully, False otherwise.
         message: A message indicating the status of the request.
         checkout_request_id: The MPESA CheckoutRequestID (used for querying the transaction status).
