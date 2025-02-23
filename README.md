@@ -1,7 +1,5 @@
 # MPESA Paybill C2B Using Daraja API
 
-By Israel Mafabi Emmanuel
-
 ## Introduction
 
 This project provides a module to initiate MPESA STK push transactions using the Safaricom Daraja API. It allows businesses to interact with MPESA's C2B (Customer to Business) services, making it easier to receive payments from customers.
