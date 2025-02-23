@@ -82,10 +82,11 @@ def mpesa_callback():
                 break
 
         print({
-                "message": "Payment Received Successfully",
-                "transaction_code": mpesa_receipt_number,
-                "description": result_description
-            }) # for debugging purposes...
+            "message": "Payment Received Successfully",
+            "transaction_code": mpesa_receipt_number,
+            "description": result_description
+        }) # for debugging purposes...
+
         if result_code == 0:  # this denotes a successful transaction...
             # here we can either store the payment status in the database or ...
             return jsonify({"message": "Payment Received Successfully"}), 200
